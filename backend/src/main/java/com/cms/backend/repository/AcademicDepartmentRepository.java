@@ -4,4 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.cms.backend.entity.AcademicDepartment;
 
-public interface AcademicDepartmentRepository extends JpaRepository<AcademicDepartment, Long>{ }
+public interface AcademicDepartmentRepository extends JpaRepository<AcademicDepartment, Long> {
+}

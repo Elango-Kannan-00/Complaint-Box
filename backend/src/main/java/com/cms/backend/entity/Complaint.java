@@ -7,27 +7,15 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.cms.backend.enums.ComplaintStatus;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Entity
-@Table(name = "complaints")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "complaints")
 public class Complaint {
 
     @Id
@@ -35,15 +23,26 @@ public class Complaint {
     @Column(name = "complaint_id")
     private Long complaintId;
 
-    @Column(name = "complaint_title")
+    @Column(name = "complaint_title", nullable = false)
     private String complaintTitle;
 
-    @Column(name = "complaint_description")
+    @Column(name = "complaint_description", length = 1000, nullable = false)
     private String complaintDescription;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "complaint_status")
     private ComplaintStatus complaintStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User student;
+
+    @ManyToOne
+    @JoinColumn(name = "complaint_department_id")
+    private ComplaintDepartment complaintDepartment;
+
+    @Column(length = 500)
+    private String feedback;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -52,14 +51,4 @@ public class Complaint {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private Timestamp updatedAt;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
-
-    private String feedback;
 }

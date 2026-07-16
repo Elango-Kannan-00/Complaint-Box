@@ -23,5 +23,5 @@ public class ComplaintRequestDto {
     private String complaintDescription;
 
     @NotNull(message = "Department is required")
-    private Long departmentId;
+    private Long complaintDepartmentId;
 }

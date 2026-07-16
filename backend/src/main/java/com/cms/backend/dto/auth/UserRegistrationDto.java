@@ -27,5 +27,5 @@ public class UserRegistrationDto {
     private String userPassword;
 
     @NotNull(message = "Department is required")
-    private Long departmentId;
+    private Long academicDepartmentId;
 }

@@ -21,7 +21,7 @@ public class AuthService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-   @Autowired
+    @Autowired
     private AcademicDepartmentRepository academicDepartmentRepository;
 
     public String register(UserRegistrationDto dto) {
@@ -36,10 +36,10 @@ public class AuthService {
         user.setUserPassword(passwordEncoder.encode(dto.getUserPassword()));
         user.setUserRole(UserRole.STUDENT);
         AcademicDepartment academicDepartment = academicDepartmentRepository
-            .findById(dto.getAcademicDepartmentId())
-            .orElseThrow(() -> new RuntimeException("Academic Department not found"));
+                .findById(dto.getAcademicDepartmentId())
+                .orElseThrow(() -> new RuntimeException("Academic Department not found"));
 
-    user.setAcademicDepartment(academicDepartment);
+        user.setAcademicDepartment(academicDepartment);
 
         repository.save(user);
 
@@ -47,7 +47,7 @@ public class AuthService {
     }
 
     public String login(UserLoginDto dto) {
-        
+
         User user = repository.findByUserEmail(dto.getUserEmail());
 
         if (user == null) {

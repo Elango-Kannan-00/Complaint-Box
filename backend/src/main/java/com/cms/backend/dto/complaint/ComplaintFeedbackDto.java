@@ -14,6 +14,6 @@ import lombok.Setter;
 public class ComplaintFeedbackDto {
 
     @NotBlank(message = "Feedback is required")
-    @Size(max = 500)
+    @Size(max = 500, message = "Feedback cannot exceed 500 characters")
     private String feedback;
 }

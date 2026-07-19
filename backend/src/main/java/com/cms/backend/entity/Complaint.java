@@ -16,6 +16,10 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "complaints")
+/**
+ * Complaint entity storing title, description, status, owning student, assigned department,
+ * feedback and creation/update timestamps.
+ */
 public class Complaint {
 
     @Id

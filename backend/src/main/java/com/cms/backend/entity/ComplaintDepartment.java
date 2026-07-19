@@ -11,6 +11,10 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "complaint_departments")
+/**
+ * Represents a department that handles complaints. May be COMMON or ACADEMIC.
+ * Contains an optional `hod` user and an optional link to `AcademicDepartment` for academic departments.
+ */
 public class ComplaintDepartment {
 
     @Id

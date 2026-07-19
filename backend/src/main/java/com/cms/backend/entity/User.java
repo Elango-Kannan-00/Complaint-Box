@@ -15,6 +15,10 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
+/**
+ * Represents an application user (student, HOD, etc.).
+ * Key fields: `userId`, `userName`, `userEmail`, `userPassword`, `userRole`, and `academicDepartment`.
+ */
 public class User {
 
     @Id

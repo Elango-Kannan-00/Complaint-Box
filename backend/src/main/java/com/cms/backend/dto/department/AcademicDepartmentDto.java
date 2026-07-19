@@ -10,6 +10,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AcademicDepartmentDto {
+    /**
+     * DTO representing an academic department for API responses.
+     */
     private Long academicDepartmentId;
     private String academicDepartmentName;
 }

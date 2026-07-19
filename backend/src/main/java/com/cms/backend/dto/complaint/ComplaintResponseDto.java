@@ -23,8 +23,6 @@ public class ComplaintResponseDto {
 
     private ComplaintStatus complaintStatus;
 
-    private String studentName;
-
     private String departmentName;
 
     private Timestamp createdAt;

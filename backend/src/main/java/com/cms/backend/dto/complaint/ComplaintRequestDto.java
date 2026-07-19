@@ -14,6 +14,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ComplaintRequestDto {
 
+    /**
+     * DTO used when creating a complaint: title, description and target complaint department id.
+     */
+
     @NotBlank(message = "Complaint title is required")
     @Size(max = 100)
     private String complaintTitle;

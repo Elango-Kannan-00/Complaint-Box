@@ -12,6 +12,10 @@ import lombok.*;
 @AllArgsConstructor
 public class HodComplaintResponseDto {
 
+    /**
+     * DTO returned to HODs listing complaints assigned to them.
+     */
+
     private Long complaintId;
 
     private String complaintTitle;

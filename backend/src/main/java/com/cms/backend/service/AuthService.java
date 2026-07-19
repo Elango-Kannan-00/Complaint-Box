@@ -15,6 +15,10 @@ import com.cms.backend.repository.UserRepository;
 
 @Service
 public class AuthService {
+    /**
+     * Service handling user registration and login operations.
+     * Uses `UserRepository` for persistence and `BCryptPasswordEncoder` for password handling.
+     */
     @Autowired
     private UserRepository repository;
 
@@ -25,6 +29,7 @@ public class AuthService {
     private AcademicDepartmentRepository academicDepartmentRepository;
 
     public String register(UserRegistrationDto dto) {
+        // check for existing user by email
         if (repository.existsByUserEmail(dto.getUserEmail())) {
             return "User Already Exist";
         }
@@ -46,6 +51,14 @@ public class AuthService {
         return "Registration Successful!";
     }
 
+    /**
+     * Authenticate a user.
+     * Steps:
+     * - Lookup user by email.
+     * - Return "User not found!" if missing.
+     * - Verify password using `BCryptPasswordEncoder.matches()`.
+     * - Return success or failure messages.
+     */
     public String login(UserLoginDto dto) {
 
         User user = repository.findByUserEmail(dto.getUserEmail());

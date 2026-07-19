@@ -13,6 +13,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserLoginDto {
+    /**
+     * DTO for user login requests. Carries email and password (validated).
+     */
 
     @Email(message = "Enter a valid email")
     @NotBlank(message = "Email is required")

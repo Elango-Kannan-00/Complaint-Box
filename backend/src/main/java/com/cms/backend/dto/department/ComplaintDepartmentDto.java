@@ -12,6 +12,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ComplaintDepartmentDto {
+    /**
+     * DTO for complaint-handling departments returned to clients.
+     */
     private Long complaintDepartmentId;
     private String complaintDepartmentName;
     private DepartmentType departmentType;

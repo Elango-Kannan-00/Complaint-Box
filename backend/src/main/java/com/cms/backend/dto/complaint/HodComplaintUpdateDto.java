@@ -14,6 +14,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class HodComplaintUpdateDto {
 
+    /**
+     * DTO used by HODs to update the `ComplaintStatus` of a complaint.
+     */
+
     @NotNull(message = "Complaint status is required")
     private ComplaintStatus complaintStatus;
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cms.backend.dto.complaint.ComplaintFeedbackDto;
 import com.cms.backend.dto.complaint.ComplaintRequestDto;
 import com.cms.backend.dto.complaint.ComplaintResponseDto;
 import com.cms.backend.dto.complaint.StudentComplaintUpdateDto;
@@ -166,8 +167,29 @@ public class ComplaintService {
             throw new RuntimeException("Complaint cannot be deleted after processing.");
         }
 
-        complaintRepository.delete(complaint);  
+        complaintRepository.delete(complaint);
 
         return "Complaint Deleted Successfully";
+    }
+
+    public String submitFeedback(Long complaintId, ComplaintFeedbackDto dto) {
+
+        Complaint complaint = complaintRepository.findById(complaintId)
+                .orElseThrow(() -> new RuntimeException("Complaint not found"));
+
+        // Only resolved complaints can receive feedback
+        if (complaint.getComplaintStatus() != ComplaintStatus.RESOLVED) {
+            throw new RuntimeException("Feedback can only be submitted after the complaint is resolved.");
+        }
+
+        // Prevent duplicate feedback
+        if (complaint.getFeedback() != null && !complaint.getFeedback().isBlank()) {
+            throw new RuntimeException("Feedback has already been submitted.");
+        }
+
+        complaint.setFeedback(dto.getFeedback());
+        complaintRepository.save(complaint);
+
+        return "Feedback submitted successfully.";
     }
 }

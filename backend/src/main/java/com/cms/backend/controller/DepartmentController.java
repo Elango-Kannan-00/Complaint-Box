@@ -18,11 +18,17 @@ public class DepartmentController {
     @Autowired
     private DepartmentService service;
 
+    /**
+     * Return all academic departments as DTOs.
+     */
     @GetMapping("/academic-departments")
     public List<AcademicDepartmentDto> getAllAcademicDepartments() {
         return service.getAllAcademicDepartments();
     }
 
+    /**
+     * Return complaint-handling departments appropriate for the given student id.
+     */
     @GetMapping("/complaint-departments/{studentId}")
     public List<ComplaintDepartmentDto> getAllCompaintDepartments(@PathVariable Long studentId) {
         return service.getComplaintDepartments(studentId);

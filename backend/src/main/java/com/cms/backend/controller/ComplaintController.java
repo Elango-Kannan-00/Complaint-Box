@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.cms.backend.dto.complaint.ComplaintFeedbackDto;
 import com.cms.backend.dto.complaint.ComplaintRequestDto;
 import com.cms.backend.dto.complaint.ComplaintResponseDto;
 import com.cms.backend.dto.complaint.StudentComplaintUpdateDto;
@@ -33,12 +34,19 @@ public class ComplaintController {
     }
 
     @PutMapping("/{complaintId}")
-    public ComplaintResponseDto updateComplaint(@PathVariable Long complaintId, @Valid @RequestBody StudentComplaintUpdateDto dto) {
+    public ComplaintResponseDto updateComplaint(@PathVariable Long complaintId,
+            @Valid @RequestBody StudentComplaintUpdateDto dto) {
         return service.updateComplaint(complaintId, dto);
     }
 
     @DeleteMapping("/{complaintId}")
     public String deleteComplaint(@Valid @PathVariable Long complaintId) {
         return service.deleteComplaint(complaintId);
+    }
+
+    @PutMapping("/{complaintId}/feedback")
+    public String submitFeedback(@PathVariable Long complaintId,@Valid @RequestBody ComplaintFeedbackDto dto) {
+
+        return service.submitFeedback(complaintId, dto);
     }
 }

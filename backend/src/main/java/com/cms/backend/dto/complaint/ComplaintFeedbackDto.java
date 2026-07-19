@@ -13,6 +13,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ComplaintFeedbackDto {
 
+    /**
+     * DTO carrying feedback text submitted by a student after complaint is resolved.
+     */
+
     @NotBlank(message = "Feedback is required")
     @Size(max = 500, message = "Feedback cannot exceed 500 characters")
     private String feedback;

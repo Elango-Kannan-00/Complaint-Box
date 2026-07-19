@@ -15,10 +15,17 @@ import com.cms.backend.repository.ComplaintRepository;
 @Service
 public class HodService {
 
+    /**
+     * Service for HOD-specific operations: listing complaints assigned to the HOD
+     * and updating complaint statuses with business rules enforced.
+     */
+
     @Autowired
     private ComplaintRepository complaintRepository;
 
-    // GET all complaints assigned to HOD
+    /**
+     * Return a list of complaints assigned to the given HOD id, mapped to DTOs.
+     */
     public List<HodComplaintResponseDto> getComplaintsForHod(Long hodId) {
 
         List<Complaint> complaints = complaintRepository.findByComplaintDepartmentHodUserId(hodId);
@@ -43,6 +50,12 @@ public class HodService {
         return response;
     }
 
+    /**
+     * Update complaint status with validation rules:
+     * - Cannot modify a RESOLVED complaint.
+     * - Cannot move directly from PENDING to RESOLVED (must go through IN_PROGRESS).
+     * - Cannot set the same status again.
+     */
     public String updateComplaintStatus(Long complaintId, HodComplaintUpdateDto dto) {
 
         Complaint complaint = complaintRepository.findById(complaintId)

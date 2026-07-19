@@ -9,6 +9,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentComplaintUpdateDto {
+    /**
+     * DTO used by students to update complaint title and description (within allowed time window).
+     */
     @NotBlank
     @Size(max = 100)
     private String complaintTitle;

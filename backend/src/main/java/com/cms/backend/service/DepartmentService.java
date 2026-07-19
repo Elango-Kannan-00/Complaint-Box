@@ -16,6 +16,11 @@ import com.cms.backend.repository.AcademicDepartmentRepository;
 import com.cms.backend.repository.ComplaintDepartmentRepository;
 import com.cms.backend.repository.UserRepository;
 
+/**
+ * Service that returns academic and complaint department DTOs used by controllers.
+ * - `getAllAcademicDepartments` returns all academic departments mapped to DTOs.
+ * - `getComplaintDepartments` returns common complaint departments plus the student's academic complaint department.
+ */
 @Service
 public class DepartmentService {
     @Autowired
@@ -27,7 +32,10 @@ public class DepartmentService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<AcademicDepartmentDto> getAllAcademicDepartments() {
+        /**
+         * Retrieve all academic departments and map to `AcademicDepartmentDto`.
+         */
+        public List<AcademicDepartmentDto> getAllAcademicDepartments() {
         List<AcademicDepartment> academicDepartments = academicDepartmentRepository.findAll();
 
         List<AcademicDepartmentDto> response = new ArrayList<>();
@@ -44,7 +52,12 @@ public class DepartmentService {
         return response;
     }
 
-    public List<ComplaintDepartmentDto> getComplaintDepartments(Long studentId) {
+        /**
+         * Return complaint departments available to a student:
+         * - all departments with type COMMON
+         * - the academic complaint department for the student's academic department
+         */
+        public List<ComplaintDepartmentDto> getComplaintDepartments(Long studentId) {
 
         User student = userRepository.findById(studentId)
                 .orElseThrow(() -> new RuntimeException("Student not found"));

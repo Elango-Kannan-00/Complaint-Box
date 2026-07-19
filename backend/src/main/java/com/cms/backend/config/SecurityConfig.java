@@ -11,13 +11,17 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    /**
+     * Configure HTTP security for the application.
+     * - CSRF is disabled for simplicity (suitable for API/dev only).
+     * - All requests are permitted (no endpoint protection configured).
+     */
+    http
+        .csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(auth -> auth
+            .anyRequest().permitAll())
+        .httpBasic(Customizer.withDefaults());
 
-        http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll())
-                .httpBasic(Customizer.withDefaults());
-
-        return http.build();
+    return http.build();
     }
 }

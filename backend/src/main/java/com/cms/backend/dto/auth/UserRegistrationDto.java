@@ -14,6 +14,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserRegistrationDto {
+    /**
+     * DTO used during user registration. Includes username, email, password and academic department id.
+     */
 
     @NotBlank(message = "Username is required")
     private String userName;

@@ -13,6 +13,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserResponseDto {
 
+    /**
+     * DTO returned to clients with public user information (id, name, email, role).
+     */
+
     private Long userId;
     private String userName;
     private String userEmail;

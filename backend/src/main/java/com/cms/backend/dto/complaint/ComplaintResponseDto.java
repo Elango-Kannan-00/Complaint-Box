@@ -15,6 +15,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ComplaintResponseDto {
 
+    /**
+     * Response DTO summarizing complaint details returned to the client.
+     */
+
     private Long complaintId;
 
     private String complaintTitle;

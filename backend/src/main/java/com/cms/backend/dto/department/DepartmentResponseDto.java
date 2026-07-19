@@ -11,6 +11,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DepartmentResponseDto {
 
+    /**
+     * Generic department DTO used where only id/name are required.
+     */
+
     private Long departmentId;
 
     private String departmentName;

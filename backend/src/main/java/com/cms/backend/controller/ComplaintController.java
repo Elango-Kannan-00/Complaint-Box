@@ -21,21 +21,17 @@ public class ComplaintController {
     private ComplaintService service;
 
     @PostMapping("/{studentId}")
-    public ComplaintResponseDto createComplaint(
-            @PathVariable Long studentId,
-            @Valid @RequestBody ComplaintRequestDto dto) {
-
+    public ComplaintResponseDto createComplaint(@PathVariable Long studentId, @Valid @RequestBody ComplaintRequestDto dto) {
         return service.createComplaint(studentId, dto);
     }
 
     @GetMapping("/{studentId}")
-    public List<ComplaintResponseDto> getAllComplaintsById(@Valid @PathVariable Long id) {
-        return service.getComplaintsByStudentId(id);
+    public List<ComplaintResponseDto> getAllComplaintsById(@Valid @PathVariable Long studentId) {
+        return service.getComplaintsByStudentId(studentId);
     }
 
     @PutMapping("/{complaintId}")
-    public ComplaintResponseDto updateComplaint(@PathVariable Long complaintId,
-            @Valid @RequestBody StudentComplaintUpdateDto dto) {
+    public ComplaintResponseDto updateComplaint(@PathVariable Long complaintId, @Valid @RequestBody StudentComplaintUpdateDto dto) {
         return service.updateComplaint(complaintId, dto);
     }
 

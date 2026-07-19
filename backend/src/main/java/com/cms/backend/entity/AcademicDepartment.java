@@ -9,6 +9,10 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "academic_departments")
+/**
+ * Represents an academic department (e.g., Computer Science). Used to group students and
+ * to link academic complaint departments.
+ */
 public class AcademicDepartment {
 
     @Id

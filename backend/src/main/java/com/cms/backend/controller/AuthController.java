@@ -18,11 +18,17 @@ public class AuthController {
     @Autowired
     private AuthService service;
 
+    /**
+     * Register a new user. Delegates to `AuthService.register`.
+     */
     @PostMapping("/register")
     public String userRegister(@Valid @RequestBody UserRegistrationDto dto) {
         return service.register(dto);
     }
 
+    /**
+     * Authenticate a user. Delegates to `AuthService.login`.
+     */
     @PostMapping("/login")
     public String userLogin(@Valid @RequestBody UserLoginDto dto) {
         return service.login(dto);

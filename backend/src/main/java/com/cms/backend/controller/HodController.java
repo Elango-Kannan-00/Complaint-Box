@@ -22,11 +22,17 @@ public class HodController {
     @Autowired
     private HodService service;
 
+    /**
+     * Get complaints assigned to a HOD by id.
+     */
     @GetMapping("/{hodId}/complaints")
     public List<HodComplaintResponseDto> getComplaints(@PathVariable Long hodId) {
         return service.getComplaintsForHod(hodId);
     }
 
+    /**
+     * Update status of a complaint. Delegates validation to `HodService.updateComplaintStatus`.
+     */
     @PutMapping("/complaints/{complaintId}/status")
     public String updateComplaintStatus(@PathVariable Long complaintId,@Valid @RequestBody HodComplaintUpdateDto dto) {
         return service.updateComplaintStatus(complaintId, dto);

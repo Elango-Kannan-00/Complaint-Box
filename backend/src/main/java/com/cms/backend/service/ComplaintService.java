@@ -24,6 +24,12 @@ import com.cms.backend.repository.UserRepository;
 @Service
 public class ComplaintService {
 
+    /**
+     * Service that implements business logic for creating, reading, updating,
+     * deleting complaints and submitting feedback. Methods enforce rules such
+     * as time-window edits (1 hour) and allowed status transitions.
+     */
+
     @Autowired
     private ComplaintRepository complaintRepository;
 
@@ -33,8 +39,13 @@ public class ComplaintService {
     @Autowired
     private UserRepository userRepository;
 
-    // HTTP POST
-    public ComplaintResponseDto createComplaint(Long studentId,
+        /**
+         * Create a new complaint submitted by `studentId`.
+         * - Validates student and complaint department.
+         * - Enforces: student may complain only to common departments or their own academic department.
+         * - Sets status to PENDING and persists the complaint.
+         */
+        public ComplaintResponseDto createComplaint(Long studentId,
             ComplaintRequestDto dto) {
 
         User student = userRepository.findById(studentId)
@@ -88,7 +99,9 @@ public class ComplaintService {
         return response;
     }
 
-    // HTTP GET
+    /**
+     * Retrieve all complaints for the given student id and map to response DTOs.
+     */
     public List<ComplaintResponseDto> getComplaintsByStudentId(Long id) {
         List<ComplaintResponseDto> response = new ArrayList<>();
 
@@ -112,7 +125,10 @@ public class ComplaintService {
         return response;
     }
 
-    // HTTP PUT
+    /**
+     * Update a complaint's title/description.
+     * - Allows edits only within 1 hour of creation and only when status is PENDING.
+     */
     public ComplaintResponseDto updateComplaint(Long complaintId, StudentComplaintUpdateDto dto) {
         Complaint complaint = complaintRepository
                 .findById(complaintId)
@@ -148,7 +164,9 @@ public class ComplaintService {
         return response;
     }
 
-    // HTTP DELETE
+    /**
+     * Delete a complaint if within 1 hour and still PENDING.
+     */
     public String deleteComplaint(Long complaintId) {
 
         Complaint complaint = complaintRepository.findById(complaintId)
@@ -172,6 +190,10 @@ public class ComplaintService {
         return "Complaint Deleted Successfully";
     }
 
+    /**
+     * Submit feedback for a resolved complaint.
+     * - Requires complaint status RESOLVED and prevents duplicate feedback.
+     */
     public String submitFeedback(Long complaintId, ComplaintFeedbackDto dto) {
 
         Complaint complaint = complaintRepository.findById(complaintId)

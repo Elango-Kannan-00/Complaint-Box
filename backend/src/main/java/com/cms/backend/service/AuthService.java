@@ -9,6 +9,7 @@ import com.cms.backend.entity.AcademicDepartment;
 import com.cms.backend.repository.AcademicDepartmentRepository;
 import com.cms.backend.entity.User;
 import com.cms.backend.enums.UserRole;
+import com.cms.backend.dto.auth.UserResponseDto;
 import com.cms.backend.dto.auth.UserLoginDto;
 import com.cms.backend.dto.auth.UserRegistrationDto;
 import com.cms.backend.repository.UserRepository;
@@ -28,10 +29,10 @@ public class AuthService {
     @Autowired
     private AcademicDepartmentRepository academicDepartmentRepository;
 
-    public String register(UserRegistrationDto dto) {
+    public UserResponseDto register(UserRegistrationDto dto) {
         // check for existing user by email
         if (repository.existsByUserEmail(dto.getUserEmail())) {
-            return "User Already Exist";
+            throw new RuntimeException("User Already Exist");
         }
 
         User user = new User();
@@ -46,9 +47,9 @@ public class AuthService {
 
         user.setAcademicDepartment(academicDepartment);
 
-        repository.save(user);
+        User savedUser = repository.save(user);
 
-        return "Registration Successful!";
+        return toResponse(savedUser);
     }
 
     /**
@@ -59,18 +60,36 @@ public class AuthService {
      * - Verify password using `BCryptPasswordEncoder.matches()`.
      * - Return success or failure messages.
      */
-    public String login(UserLoginDto dto) {
+    public UserResponseDto login(UserLoginDto dto) {
 
         User user = repository.findByUserEmail(dto.getUserEmail());
 
         if (user == null) {
-            return "User not found!";
+            throw new RuntimeException("User not found!");
         }
 
         if (passwordEncoder.matches(dto.getUserPassword(), user.getUserPassword())) {
-            return "Login Successfully!";
+            return toResponse(user);
         }
 
-        return "Login Unsuccessful!";
+        throw new RuntimeException("Login Unsuccessful!");
+    }
+
+    public UserResponseDto getProfileByEmail(String email) {
+        User user = repository.findByUserEmail(email);
+
+        if (user == null) {
+            throw new RuntimeException("User not found!");
+        }
+
+        return toResponse(user);
+    }
+
+    private UserResponseDto toResponse(User user) {
+        return new UserResponseDto(
+                user.getUserId(),
+                user.getUserName(),
+                user.getUserEmail(),
+                user.getUserRole());
     }
 }

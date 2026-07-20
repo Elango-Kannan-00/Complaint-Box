@@ -17,6 +17,7 @@ public class SecurityConfig {
      * - All requests are permitted (no endpoint protection configured).
      */
     http
+        .cors(Customizer.withDefaults())
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
             .anyRequest().permitAll())

@@ -1,4 +1,4 @@
-# Resolvr — Campus Complaint Management (Frontend)
+# Frontend — Campus Complaint Management
 
 Modern React + TanStack Start frontend for the Spring Boot Complaint Management System.
 

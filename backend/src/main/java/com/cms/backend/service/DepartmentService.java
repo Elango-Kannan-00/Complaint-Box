@@ -2,6 +2,7 @@ package com.cms.backend.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,11 +68,11 @@ public class DepartmentService {
         List<ComplaintDepartment> departments = complaintDepartmentRepository.findByDepartmentType(
                 DepartmentType.COMMON);
 
-        ComplaintDepartment academicComplaintDepartment = complaintDepartmentRepository
+        Optional<ComplaintDepartment> academicComplaintDepartment = complaintDepartmentRepository
                 .findByAcademicDepartment(academicDepartment)
-                .orElseThrow(() -> new RuntimeException("Academic complaint department not found"));
+                .or(() -> complaintDepartmentRepository.findByDepartmentName(academicDepartment.getDepartmentName()));
 
-        departments.add(academicComplaintDepartment);
+        academicComplaintDepartment.ifPresent(departments::add);
 
         List<ComplaintDepartmentDto> response = new ArrayList<>();
 

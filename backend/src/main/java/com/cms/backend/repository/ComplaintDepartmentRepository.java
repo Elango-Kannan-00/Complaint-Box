@@ -19,4 +19,6 @@ public interface ComplaintDepartmentRepository extends JpaRepository<ComplaintDe
 
     Optional<ComplaintDepartment> findByAcademicDepartment(AcademicDepartment academicDepartment);
 
+    Optional<ComplaintDepartment> findByDepartmentName(String departmentName);
+
 }

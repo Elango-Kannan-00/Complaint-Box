@@ -8,7 +8,8 @@ VALUES
 ('EEE'),
 ('MECH'),
 ('CIVIL'),
-('ECX');
+('ECX')
+ON CONFLICT (department_name) DO NOTHING;
 
 INSERT INTO complaint_departments
 (department_name, department_type)
@@ -26,4 +27,5 @@ VALUES
 ('EEE', 'ACADEMIC'),
 ('MECH', 'ACADEMIC'),
 ('CIVIL', 'ACADEMIC'),
-('ECX', 'ACADEMIC');
+('ECX', 'ACADEMIC')
+ON CONFLICT (department_name) DO NOTHING;

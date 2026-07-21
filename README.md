@@ -109,7 +109,7 @@ User roles currently defined in the backend:
 
 ## API Endpoints
 
-Base URL: `http://localhost:8080`
+Base URL: `https://resolver-backend.onrender.com`
 
 ### Auth
 
@@ -262,10 +262,10 @@ JPA is configured with:
 The frontend points to the API through `VITE_API_URL`.
 
 ```bash
-VITE_API_URL=http://localhost:3000
+VITE_API_URL=https://resolver-backend.onrender.com
 ```
 
-If `VITE_API_URL` is not set, the frontend defaults to `http://localhost:8080`.
+If `VITE_API_URL` is not set, the frontend defaults to `https://resolver-backend.onrender.com`.
 
 ## Local Development
 
@@ -276,7 +276,7 @@ cd backend
 ./mvnw spring-boot:run
 ```
 
-The backend will run on `http://localhost:8080`.
+The backend will run on `http://localhost:8080` in local development.
 
 ### Frontend
 
@@ -286,7 +286,7 @@ bun install
 bun dev
 ```
 
-The frontend will run on `http://localhost:3000`.
+The frontend will run on `http://localhost:3000` in local development.
 
 If you use npm instead of Bun:
 

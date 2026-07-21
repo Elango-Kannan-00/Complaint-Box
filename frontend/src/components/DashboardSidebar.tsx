@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import { ChevronRight, LogOut } from "lucide-react";
 import { useLocation, useNavigate } from "@tanstack/react-router";
 
+import { BrandLogo } from "@/components/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { Session } from "@/lib/auth";
@@ -43,18 +44,14 @@ export function DashboardSidebar({
     <aside className="lg:fixed lg:left-0 lg:top-0 lg:z-40 lg:h-screen lg:w-[232px]">
       <div className="flex h-full flex-col overflow-hidden bg-sidebar text-sidebar-foreground shadow-[0_18px_50px_rgba(10,20,55,0.25)] lg:border-r lg:border-white/10">
         <div className="flex h-[72px] items-center gap-3 border-b border-white/10 px-4">
-          <div className="grid h-10 w-10 place-items-center rounded-full bg-white p-1 shadow-sm">
-            <img
-              src="/favicon.jpeg"
-              alt="ResolveR"
-              className="h-full w-full rounded-full object-cover"
-              onError={(event) => {
-                event.currentTarget.style.display = "none";
-              }}
-            />
-          </div>
+          <BrandLogo
+            className="h-10 w-10 rounded-full bg-white p-1 shadow-sm"
+            imgClassName="h-full w-full object-contain"
+          />
           <div className="min-w-0">
-            <div className="font-display text-lg font-semibold tracking-tight text-white">ResolveR</div>
+            <div className="font-display text-lg font-semibold tracking-tight text-white">
+              ResolveR
+            </div>
             <div className="text-[10px] uppercase tracking-[0.28em] text-white/55">
               Complaint portal
             </div>
@@ -83,11 +80,21 @@ export function DashboardSidebar({
                     navigate({ to: href });
                   }}
                 >
-                  <span className={cn("grid h-8 w-8 shrink-0 place-items-center rounded-full", active ? "bg-white/12" : "bg-white/8")}>
+                  <span
+                    className={cn(
+                      "grid h-8 w-8 shrink-0 place-items-center rounded-full",
+                      active ? "bg-white/12" : "bg-white/8",
+                    )}
+                  >
                     <Icon className="h-4 w-4 text-current" />
                   </span>
                   <span className="min-w-0 flex-1 text-left text-xs font-medium">{label}</span>
-                  <ChevronRight className={cn("h-3.5 w-3.5 shrink-0 transition-transform", active && "translate-x-0.5")} />
+                  <ChevronRight
+                    className={cn(
+                      "h-3.5 w-3.5 shrink-0 transition-transform",
+                      active && "translate-x-0.5",
+                    )}
+                  />
                 </Button>
               );
             })}
@@ -112,7 +119,9 @@ export function DashboardSidebar({
             <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/8">
               <LogOut className="h-4 w-4 transition-colors group-hover:text-destructive" />
             </span>
-            <span className="text-xs font-medium transition-colors group-hover:text-accent">Logout</span>
+            <span className="text-xs font-medium transition-colors group-hover:text-accent">
+              Logout
+            </span>
           </Button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { ShieldCheck } from "lucide-react";
 
+import { BrandLogo } from "@/components/BrandLogo";
 import { cn } from "@/lib/utils";
 
 export function AuthLayout({
@@ -38,11 +38,14 @@ export function AuthLayout({
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(255,255,255,0.2),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(245,178,60,0.25),transparent_20%),radial-gradient(circle_at_50%_88%,rgba(0,0,0,0.35),transparent_28%)]" />
               <div className="relative z-10 flex h-full min-h-[320px] flex-col justify-between rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-5 sm:p-7 lg:min-h-full">
                 <div className="flex items-center gap-3">
-                  <div className="grid h-11 w-11 place-items-center rounded-2xl bg-white/12 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-sm">
-                    <ShieldCheck className="h-6 w-6 text-white" />
-                  </div>
+                  <BrandLogo
+                    className="h-11 w-11 rounded-2xl bg-white p-1 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-sm"
+                    imgClassName="h-full w-full object-contain"
+                  />
                   <div>
-                    <div className="font-display text-xl font-semibold tracking-tight">ResolveR</div>
+                    <div className="font-display text-xl font-semibold tracking-tight">
+                      ResolveR
+                    </div>
                     <div className="text-[10px] uppercase tracking-[0.32em] text-white/60">
                       Complaint portal
                     </div>
@@ -77,9 +80,10 @@ export function AuthLayout({
             <section className="flex items-center justify-center px-5 py-8 sm:px-8 lg:px-10">
               <div className="w-full max-w-lg">
                 <div className="mb-8 text-center">
-                  <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-primary/10 text-primary">
-                    <ShieldCheck className="h-6 w-6" />
-                  </div>
+                  <BrandLogo
+                    className="mx-auto mb-4 h-14 w-14 rounded-2xl bg-white p-1 shadow-[0_10px_30px_rgba(15,23,42,0.08)]"
+                    imgClassName="h-full w-full object-contain"
+                  />
                   <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-[2.4rem]">
                     {formTitle}
                   </h2>

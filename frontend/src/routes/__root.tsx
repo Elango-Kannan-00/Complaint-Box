@@ -81,10 +81,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "ResolveR — Campus Complaint Management" },
-      { name: "description", content: "A modern portal for students and HODs to raise, track, and resolve campus complaints." },
+      {
+        name: "description",
+        content:
+          "A modern portal for students and HODs to raise, track, and resolve campus complaints.",
+      },
       { name: "author", content: "ResolveR" },
       { property: "og:title", content: "ResolveR — Campus Complaint Management" },
-      { property: "og:description", content: "Raise, track, and resolve campus complaints — beautifully." },
+      {
+        property: "og:description",
+        content: "Raise, track, and resolve campus complaints — beautifully.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -100,6 +107,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
   }),
   shellComponent: RootShell,

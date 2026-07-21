@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { LogOut, ShieldCheck, Sparkles } from "lucide-react";
+import { LogOut, Sparkles } from "lucide-react";
 
+import { BrandLogo } from "@/components/BrandLogo";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,9 +29,7 @@ export function AppHeader() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/75 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="grid h-10 w-10 place-items-center rounded-2xl bg-[image:var(--gradient-hero)] shadow-[var(--shadow-elegant)] transition-transform group-hover:scale-105">
-            <ShieldCheck className="h-5 w-5 text-white" />
-          </div>
+          <BrandLogo className="h-10 w-10 rounded-2xl bg-white p-1 shadow-[var(--shadow-elegant)] transition-transform group-hover:scale-105" />
           <div className="leading-tight">
             <div className="font-display text-lg font-semibold tracking-tight text-foreground">
               ResolveR
@@ -45,7 +44,10 @@ export function AppHeader() {
         {session ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="gap-2 rounded-full border border-border/60 bg-card/80 px-3 hover:bg-card">
+              <Button
+                variant="ghost"
+                className="gap-2 rounded-full border border-border/60 bg-card/80 px-3 hover:bg-card"
+              >
                 <Avatar className="h-8 w-8 border border-border/60">
                   <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
                     {initials || "?"}
@@ -83,7 +85,10 @@ export function AppHeader() {
             <Button variant="ghost" asChild className="rounded-full">
               <Link to="/">Sign in</Link>
             </Button>
-            <Button asChild className="rounded-full bg-[image:var(--gradient-hero)] text-white hover:opacity-95">
+            <Button
+              asChild
+              className="rounded-full bg-[image:var(--gradient-hero)] text-white hover:opacity-95"
+            >
               <Link to="/register">Create account</Link>
             </Button>
           </div>

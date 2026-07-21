@@ -262,7 +262,7 @@ JPA is configured with:
 The frontend points to the API through `VITE_API_URL`.
 
 ```bash
-VITE_API_URL=http://localhost:8080
+VITE_API_URL=http://localhost:3000
 ```
 
 If `VITE_API_URL` is not set, the frontend defaults to `http://localhost:8080`.

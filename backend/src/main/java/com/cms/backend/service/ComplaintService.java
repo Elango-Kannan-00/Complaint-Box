@@ -45,8 +45,7 @@ public class ComplaintService {
          * - Enforces: student may complain only to common departments or their own academic department.
          * - Sets status to PENDING and persists the complaint.
          */
-        public ComplaintResponseDto createComplaint(Long studentId,
-            ComplaintRequestDto dto) {
+        public ComplaintResponseDto createComplaint(Long studentId, ComplaintRequestDto dto) {
 
         User student = userRepository.findById(studentId)
                 .orElseThrow(() -> new RuntimeException("Student not found"));

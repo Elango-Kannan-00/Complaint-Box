@@ -68,6 +68,8 @@ public class AuthService {
             throw new RuntimeException("User not found!");
         }
 
+        // System.out.println("Password from DB: " + user.getUserPassword());
+        // System.out.println("Entered Password: " + dto.getUserPassword());
         if (passwordEncoder.matches(dto.getUserPassword(), user.getUserPassword())) {
             return toResponse(user);
         }

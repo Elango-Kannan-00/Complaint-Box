@@ -294,9 +294,3 @@ If you use npm instead of Bun:
 npm install
 npm run dev
 ```
-
-## Notes
-
-- The frontend currently focuses on student and HOD flows.
-- `PRINCIPAL` and `EXECUTIVE_CHAIRMAN` exist in the backend role enum, but there are no dedicated frontend routes for them yet.
-- The backend and frontend are intentionally separated so each can be developed and deployed independently.

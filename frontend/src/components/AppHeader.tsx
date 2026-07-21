@@ -33,7 +33,7 @@ export function AppHeader() {
           </div>
           <div className="leading-tight">
             <div className="font-display text-lg font-semibold tracking-tight text-foreground">
-              Resolvr
+              ResolveR
             </div>
             <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
               <Sparkles className="h-3.5 w-3.5 text-accent" />

@@ -80,10 +80,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Resolvr — Campus Complaint Management" },
+      { title: "ResolveR — Campus Complaint Management" },
       { name: "description", content: "A modern portal for students and HODs to raise, track, and resolve campus complaints." },
-      { name: "author", content: "Resolvr" },
-      { property: "og:title", content: "Resolvr — Campus Complaint Management" },
+      { name: "author", content: "ResolveR" },
+      { property: "og:title", content: "ResolveR — Campus Complaint Management" },
       { property: "og:description", content: "Raise, track, and resolve campus complaints — beautifully." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -126,6 +126,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
   const offsetFooter = location.pathname === "/student" || location.pathname === "/hod";
+  const hideFooter = location.pathname === "/" || location.pathname === "/register";
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -134,9 +135,11 @@ function RootComponent() {
         <div className="flex-1">
           <Outlet />
         </div>
-        <div className={offsetFooter ? "lg:pl-[232px]" : ""}>
-          <AppFooter />
-        </div>
+        {hideFooter ? null : (
+          <div className={offsetFooter ? "lg:pl-[232px]" : ""}>
+            <AppFooter />
+          </div>
+        )}
       </div>
       <Toaster richColors position="top-right" />
     </QueryClientProvider>

@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -57,6 +57,12 @@ export const Route = createFileRoute("/student")({
 
 type Section = "#home" | "#complaints" | "#profile";
 
+function sectionFromHash(hash: string): Section {
+  if (hash === "#complaints") return "#complaints";
+  if (hash === "#profile") return "#profile";
+  return "#home";
+}
+
 const STATUS_FILTERS: Array<{ value: "ALL" | ComplaintStatus; label: string }> = [
   { value: "ALL", label: "All" },
   { value: "PENDING", label: "Pending" },
@@ -67,8 +73,9 @@ const STATUS_FILTERS: Array<{ value: "ALL" | ComplaintStatus; label: string }> =
 function StudentDashboard() {
   const session = useSession();
   const navigate = useNavigate();
+  const location = useLocation();
   const qc = useQueryClient();
-  const [activeSection, setActiveSection] = useState<Section>("#home");
+  const [activeSection, setActiveSection] = useState<Section>(() => sectionFromHash(location.hash));
   const [filter, setFilter] = useState<"ALL" | ComplaintStatus>("ALL");
   const [createOpen, setCreateOpen] = useState(false);
   const sessionReady = !!session && !!session.userId && !!session.userName && !!session.userEmail;
@@ -99,6 +106,13 @@ function StudentDashboard() {
       navigate({ to: "/" });
     }
   }, [navigate, session]);
+
+  useEffect(() => {
+    setActiveSection((current) => {
+      const next = sectionFromHash(location.hash);
+      return current === next ? current : next;
+    });
+  }, [location.hash]);
 
   const complaints = useQuery({
     queryKey: ["complaints", session?.userId],

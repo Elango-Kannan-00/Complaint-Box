@@ -1,10 +1,11 @@
 import { Mail, MapPin } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 const quickLinks = [
   { label: "Home", to: "/" },
   { label: "Register", to: "/register" },
   { label: "Student Home", to: "/student" },
-  { label: "My Complaints", to: "/student#complaints" },
+  { label: "My Complaints", to: "/student", hash: "complaints" },
 ];
 
 export function AppFooter() {
@@ -21,17 +22,20 @@ export function AppFooter() {
           </p>
         </div>
 
-          <div>
-            <div className="text-xs uppercase tracking-[0.28em] text-muted-foreground">Quick Links</div>
-            <div className="mt-4 space-y-2 text-sm">
-              {quickLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.to}
-                  className="block text-foreground/80 transition-colors hover:text-primary"
-                >
-                  {link.label}
-              </a>
+        <div>
+          <div className="text-xs uppercase tracking-[0.28em] text-muted-foreground">
+            Quick Links
+          </div>
+          <div className="mt-4 space-y-2 text-sm">
+            {quickLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.to}
+                hash={link.hash}
+                className="block text-foreground/80 transition-colors hover:text-accent"
+              >
+                {link.label}
+              </Link>
             ))}
           </div>
         </div>
